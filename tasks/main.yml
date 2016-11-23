@@ -1,5 +1,11 @@
 ---
 
   - include: core.yml
+    tags:
+      - all
+      - core
+
   - include: logrotate.yml
-    when: do_logrotate|bool == true
+    tags:
+      - all
+      - logs

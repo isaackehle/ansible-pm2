@@ -5,7 +5,13 @@ Install and configure PM2 for a nodejs project
 Available on Ansible Galaxy: [pgkehle.pm2-install](https://galaxy.ansible.com/pgkehle/pm2-install)
 
 
-# Examples
+## Tags
+
+    all:    run everything
+    core:   PM2 core module
+    logs:   pm2-logrorate
+    
+## Examples
 
 ```YAML
 

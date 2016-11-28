@@ -17,7 +17,7 @@ Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm
   - hosts: all
   
     roles:
-      - pgkehle.pm2
+      - { role: pgkehle.pm2 }
 ```
 
 ## License
@@ -31,3 +31,4 @@ Paul Kehle
 
 ### References
 
+* https://futurestud.io/tutorials/pm2-utility-overview-installation

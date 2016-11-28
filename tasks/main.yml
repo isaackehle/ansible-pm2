@@ -1,9 +1,41 @@
 ---
 
-  - include: core.yml
-    tags:
-      - core
+  - name: PM2 | install package
+    npm:  name=pm2 global=yes version="{{ pm2_version | default(omit) }}"
+    become: true
 
-  - include: logrotate.yml
-    tags:
-      - logs
+  - name: Remove old .pm2 directory
+    file: path=~/.pm2 state=absent
+    become: true
+
+  - name: Install pm2-logrotate
+    shell:  pm2 install pm2-logrotate
+    become: false
+    args:
+      chdir: "{{ server_dir }}"
+
+  - name: Start PM2 using ecosystem.yml
+    shell: pm2 start ecosystem.yml
+    become: false
+    args:
+      chdir: "{{ server_dir }}"
+
+  - name: Set PM2 to start on reboot
+    shell: pm2 startup linux -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+    become: true
+
+  - name: Save PM2
+    shell: pm2 save  -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+    become: true
+
+
+
+
+#sudo su -c ""
+# sudo update-rc.d -f pm2-init.sh remove
+# sudo rm /etc/init.d/pm2-init.sh
+# sudo pkill -f PM2
+# ps aux | grep pm2
+
+# PM2_HOME=/home/{{ ansible_user }}/.pm2
+

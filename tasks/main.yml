@@ -2,10 +2,8 @@
 
   - include: core.yml
     tags:
-      - all
       - core
 
   - include: logrotate.yml
     tags:
-      - all
       - logs

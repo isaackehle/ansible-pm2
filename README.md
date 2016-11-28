@@ -7,7 +7,6 @@ Available on Ansible Galaxy: [pgkehle.pm2-install](https://galaxy.ansible.com/pg
 
 ## Tags
 
-    all:    run everything
     core:   PM2 core module
     logs:   pm2-logrorate
     

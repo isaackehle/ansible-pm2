@@ -1,8 +1,8 @@
-# Ansible: pm2-install
+# Ansible: pm2
 
 Install and configure PM2 for a nodejs project
 
-Available on Ansible Galaxy: [pgkehle.pm2-install](https://galaxy.ansible.com/pgkehle/pm2-install)
+Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm2)
 
 
 ## Tags
@@ -17,7 +17,7 @@ Available on Ansible Galaxy: [pgkehle.pm2-install](https://galaxy.ansible.com/pg
   - hosts: all
   
     roles:
-      - pgkehle.pm2-install
+      - { role: pgkehle.pm2 }
 ```
 
 ## License
@@ -31,3 +31,4 @@ Paul Kehle
 
 ### References
 
+* https://futurestud.io/tutorials/pm2-utility-overview-installation

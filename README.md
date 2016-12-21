@@ -5,6 +5,11 @@ Install and configure PM2 for a nodejs project
 Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm2)
 
 
+## Variables
+```yaml
+deploy_dir:     Required for where the base path lives
+```
+
 ## Tags
 
     core:   PM2 core module

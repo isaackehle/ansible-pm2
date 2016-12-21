@@ -1,34 +1,47 @@
 ---
+- fail: msg="Please ensure '{{ item }}' is set"
+  when:
+    - not {{ item }} is defined or {{ item }} == ""
+  with_items:
+    - deploy_dir
 
-  - name: PM2 | install package
-    npm:  name=pm2 global=yes version="{{ pm2_version | default(omit) }}"
-    become: true
+- name: Install pm2 package
+  npm:  name=pm2 global=yes version="{{ pm2_version | default(omit) }}"
+  become: true
 
-  - name: Remove old .pm2 directory
-    file: path=~/.pm2 state=absent
-    become: true
+- name: Ensure pm2 is not running
+  command: pm2 kill
+  become: false
 
-  - name: Install pm2-logrotate
-    shell:  pm2 install pm2-logrotate
-    become: false
-    args:
-      chdir: "{{ server_dir }}"
+- name: Remove stuff from .pm2 directory
+  file: path=/home/{{ ansible_user }}/.pm2/{{ item }} state=absent
+  become: false
+  with_items:
+    - dump.pm2
+    - pm2.log
+    - pm2.pid
+    - touch
 
-  - name: Start PM2 using ecosystem.yml
-    shell: pm2 start ecosystem.yml
-    become: false
-    args:
-      chdir: "{{ server_dir }}"
+- name: Install pm2-logrotate
+  shell:  pm2 install pm2-logrotate
+  become: false
+  args:
+    chdir: "{{ deploy_dir }}"
 
-  - name: Set PM2 to start on reboot
-    shell: pm2 startup linux -u {{ ansible_user }} --hp /home/{{ ansible_user }}
-    become: true
+- name: Start PM2 using ecosystem.yml
+  shell: pm2 start ecosystem.yml
+  become: false
+  args:
+    chdir: "{{ deploy_dir }}"
 
-  - name: Save PM2
-    shell: pm2 save  -u {{ ansible_user }} --hp /home/{{ ansible_user }}
-    become: true
+- name: Set PM2 to start on reboot
+  shell: pm2 startup linux -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+  become: true
 
-
+- name: Save PM2
+#  shell: pm2 save -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+  shell: pm2 save
+  become: false
 
 
 #sudo su -c ""

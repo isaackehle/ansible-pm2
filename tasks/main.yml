@@ -35,7 +35,7 @@
     chdir: "{{ deploy_dir }}"
 
 - name: Set PM2 to start on reboot
-  shell: pm2 startup linux -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+  shell: pm2 startup {{ startup_type }} -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   become: true
 
 - name: Save PM2

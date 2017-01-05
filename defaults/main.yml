@@ -1,5 +1,7 @@
 ---
 
-do_logrotate: false
-do_update: false
-do_startup: false
+do_logrotate:   false
+do_update:      false
+do_startup:     false
+
+startup_type:   systemd

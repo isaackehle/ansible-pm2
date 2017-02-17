@@ -1,6 +1,6 @@
 {
   "name": "ansible-pm2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Install and configure PM2 for a nodejs project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

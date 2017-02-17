@@ -4,14 +4,17 @@
     - not {{ item }} is defined or {{ item }} == ""
   with_items:
     - deploy_dir
+  tags: ['always']
 
 - name: Install pm2 package
   npm:  name=pm2 global=yes version="{{ pm2_version | default(omit) }}"
   become: true
+  tags: ['init', 'install']
 
 - name: Ensure pm2 is not running
   command: pm2 kill
   become: false
+  tags: ['init', 'install']
 
 - name: Remove stuff from .pm2 directory
   file: path=/home/{{ ansible_user }}/.pm2/{{ item }} state=absent
@@ -21,27 +24,32 @@
     - pm2.log
     - pm2.pid
     - touch
+  tags: ['install']
 
 - name: Install pm2-logrotate
   shell:  pm2 install pm2-logrotate
   become: false
   args:
     chdir: "{{ deploy_dir }}"
+  tags: ['install']
 
 - name: Start PM2 using ecosystem.yml
   shell: pm2 start ecosystem.yml
   become: false
   args:
     chdir: "{{ deploy_dir }}"
+  tags: ['install']
 
 - name: Set PM2 to start on reboot
   shell: pm2 startup {{ startup_type }} -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   become: true
+  tags: ['install']
 
 - name: Save PM2
 #  shell: pm2 save -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   shell: pm2 save
   become: false
+  tags: ['install']
 
 
 #sudo su -c ""

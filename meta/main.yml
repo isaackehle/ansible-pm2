@@ -10,4 +10,6 @@ galaxy_info:
     - xenial
   galaxy_tags:
   - system
+  - pm2
+  - npm
 dependencies: []

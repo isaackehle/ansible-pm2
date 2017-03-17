@@ -7,22 +7,33 @@ Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm
 
 ## Variables
 ```yaml
-deploy_dir:     Required for where the base path lives
+
+vars: 
+  flags:
+    - init            # Basic initialization
+    - processes       # Configure the node processes to start at reboot
+    - upgrade         # Upgrade relevant packages
+
+  deploy_dir:         # Required for where the base path lives
+
 ```
 
-## Tags
-
-    core:   PM2 core module
-    logs:   pm2-logrorate
-    
 ## Examples
 
 ```YAML
+- hosts: all
 
-  - hosts: all
-  
-    roles:
-      - { role: pgkehle.pm2 }
+  roles:
+    - { role: pgkehle.pm2, flags: ['init'] }     
+    - { role: pgkehle.pm2, flags: ['processes'] }     
+    - { role: pgkehle.pm2, flags: ['upgrade'] }     
+```
+```bash
+export deploy="'deploy_dir': '/opt/servers/node'"
+
+ansible-playbook playbooks/pm2.yml -e "{'flags': ['init'], ${deploy}}" -t init
+ansible-playbook playbooks/pm2.yml -e "{'flags': ['configure'], ${deploy}}" -t processes
+ansible-playbook playbooks/pm2.yml -e "{'flags': ['packages'], ${deploy}}" -t upgrade
 ```
 
 ## License

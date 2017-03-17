@@ -7,9 +7,28 @@
   tags: ['always']
 
 - name: Install pm2 package
-  npm:  name=pm2 global=yes version="{{ pm2_version | default(omit) }}"
+  npm:
+    name: "{{ item }}"
+    global: yes
+    state: present
   become: true
   tags: ['init', 'install']
+  with_items:
+    - pm2
+    - pm2-logrotate
+    - pmx
+
+- name: Upgrade pm2 package
+  npm:
+    name: "{{ item }}"
+    global: yes
+    state: present
+  become: true
+  tags: ['init', 'install', 'configure', 'upgrade']
+  with_items:
+    - pm2
+    - pm2-logrotate
+    - pmx
 
 - name: Ensure pm2 is not running
   command: pm2 kill
@@ -38,7 +57,7 @@
   become: false
   args:
     chdir: "{{ deploy_dir }}"
-  tags: ['install']
+  tags: ['install', 'configure', 'upgrade']
 
 - name: Set PM2 to start on reboot
   shell: pm2 startup {{ startup_type }} -u {{ ansible_user }} --hp /home/{{ ansible_user }}

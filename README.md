@@ -1,4 +1,4 @@
-# Ansible: pm2
+# Ansible Role - pm2
 
 Install and configure PM2 for a nodejs project
 
@@ -48,7 +48,7 @@ Paul Kehle
 ## For local development testing
 
 ```bash
-rsync -av ~/code/ansible-pm2/* ~/.ansible/roles/pgkehle.pm2
+rsync -av --delete ~/code/ansible-pm2/* ~/.ansible/roles/pgkehle.pm2
 ```
 
 ### References

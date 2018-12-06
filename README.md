@@ -45,12 +45,6 @@ MIT
 Paul Kehle  
 @pgkehle ([twitter](https://twitter.com/pgkehle), [github](https://github.com/pgkehle), [linkedin](https://www.linkedin.com/in/pgkehle))
 
-## For local development testing
-
-```bash
-rsync -av --delete ~/code/ansible-pm2/* ~/.ansible/roles/pgkehle.pm2
-```
-
 ### References
 
 * https://futurestud.io/tutorials/pm2-utility-overview-installation

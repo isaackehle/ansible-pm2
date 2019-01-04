@@ -1,5 +1,7 @@
 ---
-- fail: msg="Please ensure '{{ item }}' is set"
+- name: Ensure Required Items
+  fail: 
+    msg: "Please ensure '{{ item.use }}' is set"
   when:
     - not {{ item }} is defined or {{ item }} == ""
   with_items:
@@ -23,7 +25,9 @@
   when: ((['init', 'processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Remove stuff from .pm2 directory
-  file: path=/home/{{ ansible_user }}/.pm2/{{ item }} state=absent
+  file: 
+    path: /home/{{ ansible_user }}/.pm2/{{ item }} 
+    state: absent
   become: false
   with_items:
     - dump.pm2

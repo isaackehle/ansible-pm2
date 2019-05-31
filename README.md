@@ -9,11 +9,11 @@ Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm
 ```yaml
 vars:
   flags:
-    - init            # Basic initialization
-    - processes       # Configure the node processes to start at reboot
-    - upgrade         # Upgrade relevant packages
+    - init # Basic initialization
+    - processes # Configure the node processes to start at reboot
+    - upgrade # Upgrade relevant packages
 
-  deploy_dir:         # Required for where the base path lives
+  deploy_dir: # Required for where the base path lives
 ```
 
 ## Examples
@@ -22,9 +22,9 @@ vars:
 - hosts: all
 
   roles:
-    - { role: pgkehle.pm2, flags: ['init'] }     
-    - { role: pgkehle.pm2, flags: ['processes'] }     
-    - { role: pgkehle.pm2, flags: ['upgrade'] }     
+    - { role: pgkehle.pm2, flags: ["init"] }
+    - { role: pgkehle.pm2, flags: ["processes"] }
+    - { role: pgkehle.pm2, flags: ["upgrade"] }
 ```
 
 ```bash
@@ -46,4 +46,4 @@ Paul Kehle
 
 ### References
 
-* https://futurestud.io/tutorials/pm2-utility-overview-installation
+- [PM2 Home](https://pm2.io/doc/en/runtime/overview/)

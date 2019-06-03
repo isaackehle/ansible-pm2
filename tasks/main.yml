@@ -1,9 +1,9 @@
 ---
 - name: Ensure Required Items
-  fail: 
+  fail:
     msg: "Please ensure '{{ item.use }}' is set"
   when:
-    - not {{ item }} is defined or {{ item }} == ""
+    - not {{ item }} is defined or {{ item }} | length == 0
   with_items:
     - deploy_dir
 
@@ -25,8 +25,8 @@
   when: ((['init', 'processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Remove stuff from .pm2 directory
-  file: 
-    path: /home/{{ ansible_user }}/.pm2/{{ item }} 
+  file:
+    path: /home/{{ ansible_user }}/.pm2/{{ item }}
     state: absent
   become: false
   with_items:
@@ -37,7 +37,7 @@
   when: ((['processes'] | intersect(flags)) | length > 0)
 
 - name: Install pm2-logrotate
-  shell:  pm2 install pm2-logrotate
+  shell: pm2 install pm2-logrotate
   become: false
   args:
     chdir: "{{ deploy_dir }}"
@@ -56,12 +56,10 @@
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Save PM2
-#  shell: pm2 save -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+  #  shell: pm2 save -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   shell: pm2 save
   become: false
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
-
-
 #sudo su -c ""
 # sudo update-rc.d -f pm2-init.sh remove
 # sudo rm /etc/init.d/pm2-init.sh

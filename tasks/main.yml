@@ -60,11 +60,3 @@
   shell: pm2 save
   become: false
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
-#sudo su -c ""
-# sudo update-rc.d -f pm2-init.sh remove
-# sudo rm /etc/init.d/pm2-init.sh
-# sudo pkill -f PM2
-# ps aux | grep pm2
-
-# PM2_HOME=/home/{{ ansible_user }}/.pm2
-

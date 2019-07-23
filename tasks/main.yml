@@ -7,7 +7,7 @@
   with_items:
     - deploy_dir
 
-- name: Install/Upgrade pm2 package
+- name: Install/Upgrade pm2 package(s)
   npm:
     name: "{{ item }}"
     global: yes
@@ -16,7 +16,6 @@
   when: ((['init', 'processes', 'upgrade'] | intersect(flags)) | length > 0)
   with_items:
     - pm2
-    - pm2-logrotate
     - pmx
 
 - name: Ensure pm2 is not running
@@ -24,7 +23,7 @@
   become: false
   when: ((['init', 'processes', 'upgrade'] | intersect(flags)) | length > 0)
 
-- name: Remove stuff from .pm2 directory
+- name: Remove old artifacts from the ansible user's .pm2 directory
   file:
     path: /home/{{ ansible_user }}/.pm2/{{ item }}
     state: absent
@@ -36,7 +35,7 @@
     - touch
   when: ((['processes'] | intersect(flags)) | length > 0)
 
-- name: Install pm2-logrotate
+- name: Install pm2-logrotate using PM2
   shell: pm2 install pm2-logrotate
   become: false
   args:
@@ -56,7 +55,6 @@
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Save PM2
-  #  shell: pm2 save -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   shell: pm2 save
   become: false
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)

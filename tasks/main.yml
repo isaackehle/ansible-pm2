@@ -30,6 +30,7 @@
   become: false
   with_items:
     - dump.pm2
+    - dump.pm2.bak
     - pm2.log
     - pm2.pid
     - touch

@@ -35,6 +35,13 @@ ansible-playbook playbooks/pm2.yml -e "{'flags': ['configure'], ${deploy }}" -t 
 ansible-playbook playbooks/pm2.yml -e "{'flags': ['packages'], ${deploy }}" -t upgrade
 ```
 
+## Linting
+
+```bash
+yamllint -c yamllint.yaml .
+ansible-lint .
+```
+
 ## License
 
 MIT

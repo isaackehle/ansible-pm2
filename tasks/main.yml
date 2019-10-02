@@ -37,25 +37,25 @@
   when: ((['processes'] | intersect(flags)) | length > 0)
 
 - name: Install pm2-logrotate using PM2
-  shell: pm2 install pm2-logrotate
+  command: pm2 install pm2-logrotate
   become: false
   args:
     chdir: "{{ deploy_dir }}"
   when: ((['processes'] | intersect(flags)) | length > 0)
 
 - name: Start PM2 using ecosystem.yml
-  shell: pm2 start ecosystem.yml
+  command: pm2 start ecosystem.yml
   become: false
   args:
     chdir: "{{ deploy_dir }}"
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Set PM2 to start on reboot
-  shell: pm2 startup {{ startup_type }} -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+  command: pm2 startup {{ startup_type }} -u {{ ansible_user }} --hp /home/{{ ansible_user }}
   become: true
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)
 
 - name: Save PM2
-  shell: pm2 save
+  command: pm2 save
   become: false
   when: ((['processes', 'upgrade'] | intersect(flags)) | length > 0)

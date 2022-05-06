@@ -1,6 +1,6 @@
 {
   "name": "ansible-pm2",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "Install and configure PM2 for a nodejs project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pgkehle/ansible-pm2.git"
+    "url": "git+https://github.com/isaackehle/ansible-pm2.git"
   },
-  "author": "Paul Kehle (pgkehle@gmail.com)",
+  "author": "Isaac Kehle (isaac@kehle.org)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pgkehle/ansible-pm2/issues"
+    "url": "https://github.com/isaackehle/ansible-pm2/issues"
   },
-  "homepage": "https://github.com/pgkehle/ansible-pm2#readme",
+  "homepage": "https://github.com/isaackehle/ansible-pm2#readme",
   "main": "tasks/main.yml",
   "keywords": [
     "ansible"

@@ -1,15 +1,15 @@
 galaxy_info:
-  author: Paul Kehle <twitter.com/pgkehle>
+  author: Isaac Kehle <twitter.com/isaackehle>
   description: Install and configure PM2 for a nodejs project
-  company: pgkehle
+  company: isaackehle
   license: MIT
   min_ansible_version: 2.4
   platforms:
-  - name: Ubuntu
-    versions:
-    - xenial
+    - name: Ubuntu
+      versions:
+        - xenial
   galaxy_tags:
-  - system
-  - pm2
-  - npm
+    - system
+    - pm2
+    - npm
 dependencies: []

@@ -2,7 +2,7 @@
 
 Install and configure PM2 for a nodejs project
 
-Available on Ansible Galaxy: [pgkehle.pm2](https://galaxy.ansible.com/pgkehle/pm2)
+Available on Ansible Galaxy: [isaackehle.pm2](https://galaxy.ansible.com/isaackehle/pm2)
 
 ## Variables
 
@@ -22,9 +22,9 @@ vars:
 - hosts: all
 
   roles:
-    - { role: pgkehle.pm2, flags: ["init"] }
-    - { role: pgkehle.pm2, flags: ["processes"] }
-    - { role: pgkehle.pm2, flags: ["upgrade"] }
+    - { role: isaackehle.pm2, flags: ["init"] }
+    - { role: isaackehle.pm2, flags: ["processes"] }
+    - { role: isaackehle.pm2, flags: ["upgrade"] }
 ```
 
 ```bash
@@ -48,8 +48,8 @@ MIT
 
 ## Author Information
 
-Paul Kehle  
-@pgkehle ([twitter](https://twitter.com/pgkehle), [github](https://github.com/pgkehle), [linkedin](https://www.linkedin.com/in/pgkehle))
+Isaac Kehle
+@isaackehle ([twitter](https://twitter.com/isaackehle), [github](https://github.com/isaackehle), [linkedin](https://www.linkedin.com/in/isaackehle))
 
 ### References
 
